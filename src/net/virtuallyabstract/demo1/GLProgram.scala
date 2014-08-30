@@ -11,19 +11,30 @@ trait GLProgram {
   
 	def getVerticesIndex(): Int;
 	def getNormalsIndex(): Int;
+	def getTexturesIndex(): Int;
 	def getColorsIndex(): Int;
 	def getModelViewIndex(): Int;
 	def getITModelViewIndex(): Int;
 	def getProjectionIndex(): Int;
 
 	def activate(): Unit = {
-		if(program == null && targetGL != null)
+		if(program == null || targetGL == null)
 			return;
 		
 		program.useProgram(targetGL, true)
 	}
 	
+	def deactivate(): Unit = {
+	    if(program == null || targetGL == null)
+	    	return;
+	    
+	    program.useProgram(targetGL, false);
+	}
+	
 	def destroy(): Unit = {
+	    if(program == null || targetGL == null)
+	    	return;
+	    
 		program.destroy(targetGL);
 	}
 }
