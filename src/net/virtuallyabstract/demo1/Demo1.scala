@@ -73,16 +73,13 @@ class Demo1 extends GLEventListener
 		//Enable culling, by default only triangles with vertices ordered in a counter clockwise order will be rendered
 		gl.glEnable(GL.GL_CULL_FACE);	
 		gl.glEnable(GL.GL_DEPTH_TEST);
-		//gl.glDepthFunc(GL.GL_LESS);
 		
 		try
 		{
 		    program = new FixedLightProgram(gl);
 		    heightProgram = new HeightMapProgram(gl);
 			
-			cube = new Cube(gl);
 			grid = new Grid(gl, 0.1f, 200, 0.1f, 200);
-			//grid = new Grid(gl, 20.0f, 1, 20.0f, 1);
 			
 			mapTexture = TextureIO.newTexture(this.getClass().getResourceAsStream("resources/heightmap2.jpg"), false, TextureIO.JPG);
 			
@@ -104,33 +101,15 @@ class Demo1 extends GLEventListener
 		gl.glClearBufferfv(GL2ES3.GL_COLOR, 0, blackArray, 0);
 		gl.glClear(GL.GL_DEPTH_BUFFER_BIT);
 		
-		program.activate();
-						
 		val time: Long = System.currentTimeMillis();
 		val degrees: Float = ((time / 20) % 360);
-		
-		cube.reset();
-		cube.rotateXYZ(degrees, 1.0f, 1.0f, 0.0f);
-		cube.move(0.0f, 0.0f, -5.0f);
 		
 		mvp.glMatrixMode(GLMatrixFunc.GL_PROJECTION);
 		mvp.glLoadIdentity();
 		//90 degree field of view, aspect ratio of 1.0 (since window width = height), zNear 1.0f, zFar 20.0f
 		mvp.gluPerspective(90.0f, 1.0f, 1.0f, 30.0f);
 		mvp.update();
-		
-		//Projection matrix
-		gl.glUniformMatrix4fv(program.getProjectionIndex(), 1, false, mvp.glGetMatrixf());
-			
-		//cube.draw(program);
-		
-		cube.reset();
-		cube.rotateXYZ(degrees, 0.0f, 1.0f, 0.0f);
-		cube.move(2.0f, 0.0f, -5.0f);
-		
-		//cube.draw(program);
-		
-		program.deactivate();
+
 		heightProgram.activate();
 		
 		grid.reset();

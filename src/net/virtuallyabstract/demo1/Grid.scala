@@ -39,29 +39,20 @@ class Grid(gl: GL4, xwidth: Float, xcount: Int, zwidth: Float, zcount: Int) exte
 				for(z <- 0 until zcount) {
 					val xpos: Float = x * xwidth;
 					val zpos: Float = z * zwidth * -1;  //Negative -1 to render it down the z-axis
-					
-					//println(xpos / maxWidth + ", " + zpos / maxLen);
-					//println((xpos + xwidth) / maxWidth + ", " + (zpos - zwidth) / maxLen);
-					//println(xpos / maxWidth + ", " + (zpos - zwidth) / maxLen);
-									
+
 					addVertex(xpos, 0.0f, zpos);
 					addTexture(xpos / maxWidth, zpos / maxLen, 0.0f);
 					addVertex(xpos + xwidth, 0.0f, zpos - zwidth);
 					addTexture((xpos + xwidth) / maxWidth, (zpos - zwidth) / maxLen, 0.0f);
 					addVertex(xpos, 0.0f, zpos - zwidth);				
 					addTexture(xpos / maxWidth, (zpos - zwidth) / maxLen, 0.0f);
-					
-					//println(xpos / maxWidth + ", " + zpos / maxLen);
-					//println((xpos + xwidth) / maxWidth + ", " + zpos / maxLen);
-					//println((xpos + xwidth) / maxWidth + ", " + (zpos - zwidth) / maxLen);
-					
+
 					addVertex(xpos, 0.0f, zpos);
 					addTexture(xpos / maxWidth, zpos / maxLen, 0.0f);
 					addVertex(xpos + xwidth, 0.0f, zpos);
 					addTexture((xpos + xwidth) / maxWidth, zpos / maxLen, 0.0f);
 					addVertex(xpos + xwidth, 0.0f, zpos - zwidth);				
-					addTexture((xpos + xwidth) / maxWidth, (zpos - zwidth) / maxLen, 0.0f);
-					
+					addTexture((xpos + xwidth) / maxWidth, (zpos - zwidth) / maxLen, 0.0f);					
 				}
 			}
 			
