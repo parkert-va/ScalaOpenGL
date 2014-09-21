@@ -30,7 +30,7 @@ void main(void)
 	//geometry shader normally gets will also be modified by the projection matrix and therefore be unsuitable
 	//for lighting calculations
 	mvPosition = vec3(mvMatrix * newPosition);
-	lightPos = vec3(0.0, 5.0, 1.0);	
+	lightPos = vec3(0.0, 1.0, 1.0);	
 	
 	//This will just pass through the color to the geometry shader where the intensity will be actually calculated
 	intensity = color;

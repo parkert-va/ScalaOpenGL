@@ -84,7 +84,7 @@ class Demo1 extends GLEventListener
 			grid = new Grid(gl, 0.1f, 200, 0.1f, 200);
 			//grid = new Grid(gl, 20.0f, 1, 20.0f, 1);
 			
-			mapTexture = TextureIO.newTexture(this.getClass().getResourceAsStream("resources/heightmap4.jpg"), false, TextureIO.JPG);
+			mapTexture = TextureIO.newTexture(this.getClass().getResourceAsStream("resources/heightmap2.jpg"), false, TextureIO.JPG);
 			
 			mvp = new PMVMatrix();
 		}

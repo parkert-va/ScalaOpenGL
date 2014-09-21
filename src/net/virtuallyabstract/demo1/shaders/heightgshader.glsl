@@ -18,9 +18,14 @@ void main(void)
 	//Calculate the normal for the triangle, this will be the same for all vertices
 	vec4 ab = normalize(gl_in[0].gl_Position - gl_in[1].gl_Position);
 	vec4 bc = normalize(gl_in[1].gl_Position - gl_in[2].gl_Position);
-    //The cross product of two vectors will create a new vector that points in the direction
-    //the plane crated by the first two vectors is facing.  In other words a normal vector.
+
+	//The cross product of two vectors will create a new vector that points in the direction
+	//the plane crated by the first two vectors is facing.  In other words a normal vector.
 	vec3 normal = normalize(cross(vec3(bc), vec3(ab)));
+
+	//I wish I could explain this better.  It appears that vertical surfaces generate a normal pointing
+	//in the wrong direction.  Reflecting it across the z-axis fixes this problem
+	normal.z = -normal.z;
 
 	for(i = 0; i < gl_in.length(); i++) {
 		gl_Position = gl_in[i].gl_Position;
